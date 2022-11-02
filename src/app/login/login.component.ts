@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
     console.log(this.respuesta);
     if(this.respuesta.answer){
       console.log("bien");
-      this.reuter.navigate(['/mesero'])
+
+      this.reuter.navigate(['/mesero',this.respuesta.name])
     }
     else{
       console.log("mal");

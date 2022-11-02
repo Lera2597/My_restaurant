@@ -5,8 +5,8 @@ import { MesaComponent } from './mesa/mesa.component';
 import { MeseroComponent } from './mesero/mesero.component';
 const routes: Routes = [
   {path:'login',component:LoginComponent},
-  {path:'mesa/:id_mesa',component:MesaComponent},
-  {path:'mesero',component:MeseroComponent}
+  {path:'mesa',component:MesaComponent},
+  {path:'mesero/:user',component:MeseroComponent}
 ];
 
 @NgModule({
