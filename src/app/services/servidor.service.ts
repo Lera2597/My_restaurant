@@ -14,4 +14,18 @@ export class ServidorService {
     console.log(path);
     return this.http.post(path,data);
   }
+  GetProduct(cantidad:string){
+    let path = `${'http://localhost:80/Web_Proyecto_Final/Prueba1/Get.php'}`;
+    let data:any;
+    switch (cantidad){
+      case "only":
+        data = {table:"producto",query:"only",name:"cocacola"};
+        break
+      case "all":
+        data = {table:"producto",query:"all"};
+        break
+    }
+    console.log(path,data);
+    return this.http.post(path,data);
+  }
 }

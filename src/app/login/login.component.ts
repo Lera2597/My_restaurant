@@ -9,10 +9,11 @@ import { ServidorService } from '../services/servidor.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   formularioRegistro = new FormGroup({
     username: new FormControl('',Validators.required),
     password: new FormControl('',Validators.required)
-  })
+  });
 
   private respuesta:any={answer:0};
   constructor(private servidor:ServidorService, private reuter:Router) { }
@@ -21,17 +22,29 @@ export class LoginComponent implements OnInit {
   }
   login(){
     console.log(this.formularioRegistro.value);
-    this.servidor.login(this.formularioRegistro.value).subscribe(answer=>{this.respuesta=answer});
+    this.servidor.login(this.formularioRegistro.value).subscribe(answer=>
+      {
+        this.respuesta=answer;
+        if(this.respuesta.answer){
+          console.log("bien");
+    
+          this.reuter.navigate(['/mesero',this.respuesta.name])
+        }
+        else{
+          console.log("mal");
+        }
+      },error=>{alert(error)}
+      );
     
     console.log(this.respuesta);
-    if(this.respuesta.answer){
-      console.log("bien");
+    // if(this.respuesta.answer){
+    //   console.log("bien");
 
-      this.reuter.navigate(['/mesero',this.respuesta.name])
-    }
-    else{
-      console.log("mal");
-    }
+    //   this.reuter.navigate(['/mesero',this.respuesta.name])
+    // }
+    // else{
+    //   console.log("mal");
+    // }
     console.log(this.respuesta.answer);
   }
   ValidateUser(servicio:ServidorService){
