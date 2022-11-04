@@ -26,17 +26,23 @@
   margin-left: 0.1rem;
   margin-right: 0.1rem;
 }
-._resaltar2:hover { /*seudo clase para que cambie de color cuando se pasa el cursor */
+._bnt-resaltar-borde:hover{ /*seudo clase para que cambie de color cuando se pasa el cursor */
 	color: rgb(251, 250, 250);
   font-weight: bold;
   /*background:rgb(25, 135, 84);*/
   border: 1px solid rgb(25, 135, 84);
   border-radius: 25px 10px;
 }
-._resaltar:target { /*seudo clase para que cambie de color cuando se pasa el cursor */
-	color: rgb(251, 250, 250);
-  font-weight: bold;
-  /*background:rgb(25, 135, 84);*/
-  border: 1px solid rgb(25, 135, 84);
-  border-radius: 25% 10%;
+._precio{
+  margin-top: 5px;
+}
+._Nodisponible{
+  color: brown;
+}
+._img-resaltar-borde:hover{
+  border: 2px solid rgb(25, 135, 84);
+}
+._img-resaltar-click:active{
+
+  border: 3px solid rgb(255, 0, 0);
 }

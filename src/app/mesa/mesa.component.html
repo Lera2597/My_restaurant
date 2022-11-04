@@ -28,13 +28,13 @@
                                 <div class="collapse navbar-collapse" id="navbarCollapse">
                                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                                         <li class="nav-item">
-                                            <a  class="nav-link _resaltar  _resaltar2" (click)="ClaseComida('entrada')" >Entradas</a>
+                                            <a  class="nav-link _bnt-resaltar-borde" (click)="ClaseComida('entrada')" >Entradas</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a  class="nav-link _resaltar _resaltar2" (click)="ClaseComida('fuerte')" >Platos Fuertes</a>
+                                            <a  class="nav-link _bnt-resaltar-borde" (click)="ClaseComida('fuerte')" >Platos Fuertes</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link _resaltar _resaltar2" (click)="ClaseComida('bebida')" >Bebidas</a>
+                                            <a class="nav-link _bnt-resaltar-borde" (click)="ClaseComida('bebida')" >Bebidas</a>
                                         </li>
                                     </ul>
                                     <form class="d-flex" role="search">
@@ -47,27 +47,48 @@
                         </nav>
                     </div>
                     <div [ngSwitch]="option">
-                        <div class="row" *ngSwitchCase=0>
-                            <div class="col-md-3 _themed-grid-col">producto1</div>
-                            <div class="col-md-3 _themed-grid-col">producto2</div>
-                            <div class="col-md-3 _themed-grid-col">producto3</div>
-                            <div class="col-md-3 _themed-grid-col">producto4</div>
+                        <div class="row" *ngSwitchCase=0><!-- ENTRADAS -->
+                            <div class="col-md-3 _themed-grid-col" *ngFor="let product of entradas">
+                                <h6>{{product['nombre']}} </h6>
+                                <img (click)="AddProduct(product)" class="_img-resaltar-borde _img-resaltar-click" src='../../assets/images/Productos{{product["foto"]}}' alt="">                            
+                                <ng-container *ngIf="ToInt(product['disponibilidad']) ; else aux">
+                                    <h6 class="_precio">${{product["valor"]}} </h6>
+                                </ng-container>
+                                <ng-template #aux> 
+                                    <h6 class="_precio _Nodisponible">No disponible</h6>
+                                </ng-template>
+                                <p>{{product["descripcion"]}}</p>
+                            </div>
+                            
                         </div>
-                        <div class="row" *ngSwitchCase=1>
-                            <div class="col-md-3 _themed-grid-col">producto1</div>
-                            <div class="col-md-3 _themed-grid-col">producto2</div>
-                            <div class="col-md-3 _themed-grid-col">producto3</div>
-                            <div class="col-md-3 _themed-grid-col">producto4</div>
-                            <div class="col-md-3 _themed-grid-col">producto5</div>
-                            <div class="col-md-3 _themed-grid-col">producto6</div>
-                            <div class="col-md-3 _themed-grid-col">producto7</div>
-                            <div class="col-md-3 _themed-grid-col">producto8</div>
+                        <div class="row" *ngSwitchCase=1><!-- PLATO FUERTES -->
+                            <div class="col-md-3 _themed-grid-col" *ngFor="let product of fuertes">
+                                <h6>{{product['nombre']}} </h6>
+                                <img (click)="AddProduct(product)" class="_img-resaltar-borde _img-resaltar-click" src='../../assets/images/Productos{{product["foto"]}}' alt="">                            
+                                <ng-container *ngIf="ToInt(product['disponibilidad']) ; else aux">
+                                    <h6 class="_precio">${{product["valor"]}} </h6>
+                                </ng-container>
+                                <ng-template #aux> 
+                                    <h6 class="_precio _Nodisponible">No disponible</h6>
+                                </ng-template>
+                                <p>{{product["descripcion"]}}</p>
+                                
+                            </div>                         
                         </div>
-                        <div class="row" *ngSwitchCase=2>
-                            <div class="col-md-3 _themed-grid-col">producto1</div>
-                            <div class="col-md-3 _themed-grid-col">producto2</div>
-                            <div class="col-md-3 _themed-grid-col">producto3</div>
-                            <div class="col-md-3 _themed-grid-col">producto4</div>
+                        <div class="row" *ngSwitchCase=2><!-- BEBIDAS -->
+                            
+                            <div class="col-md-3 _themed-grid-col" *ngFor="let product of bebidas">
+                                <h6>{{product['nombre']}} </h6>
+                                <img (click)="AddProduct(product)" class="_img-resaltar-borde _img-resaltar-click" src='../../assets/images/Productos{{product["foto"]}}' alt="">                            
+                                <ng-container *ngIf="ToInt(product['disponibilidad']) ; else aux">
+                                    <h6 class="_precio">${{product["valor"]}} </h6>
+                                </ng-container>
+                                <ng-template #aux> 
+                                    <h6 class="_precio _Nodisponible">No disponible</h6>
+                                </ng-template>
+                                <p>{{product["descripcion"]}}</p>
+                                
+                            </div>
                         </div>
                     </div>
                     
