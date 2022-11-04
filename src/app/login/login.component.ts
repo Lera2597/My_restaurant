@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   });
 
   private respuesta:any={answer:0};
-  constructor(private servidor:ServidorService, private reuter:Router) { }
+  constructor(private servidor:ServidorService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
         if(this.respuesta.answer){
           console.log("bien");
     
-          this.reuter.navigate(['/mesero',this.respuesta.name])
+          this.router.navigate(['/mesero',this.respuesta.name])
         }
         else{
           console.log("mal");
@@ -52,6 +52,10 @@ export class LoginComponent implements OnInit {
       const value = control.value;
       return servicio.login(value);
     }
+  }
+
+  register(){
+    this.router.navigate(['/register']);
   }
 }
 

@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MeseroComponent } from './mesero/mesero.component';
 import { MesaComponent } from './mesa/mesa.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +21,8 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     MeseroComponent,
     MesaComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent
   ],
   imports: [
     ReactiveFormsModule,
