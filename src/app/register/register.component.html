@@ -1,0 +1,56 @@
+<div class="container" style="max-width: 300px">
+  <form [formGroup]="registerForm">
+    <h4 class="card-title">Registro de usuarios</h4>
+
+    <div class="form-group form-item">
+      <label for="name">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Ingresa tu nombre"
+        formControlName="name"
+      />
+    </div>
+    <div class="form-group form-item">
+      <label for="name">Usuario</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Ingresa tu nombre"
+        formControlName="username"
+      />
+    </div>
+    <div class="form-group form-item">
+      <label for="pas">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        id="pass"
+        placeholder="Contraseña"
+        formControlName="pass"
+      />
+    </div>
+    <div class="input-group mb-3 form-item" style="margin-top: 10px">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Rol</label>
+      </div>
+      <select
+        class="custom-select"
+        id="inputGroupSelect01"
+        formControlName="rol"
+      >
+        <option selected>Escoger...</option>
+        <option value="1">Mesero</option>
+        <option value="2">Cocina</option>
+      </select>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary form-item"
+      (click)="createUser()"
+      [disabled]="!registerForm.valid"
+    >
+      Submit
+    </button>
+  </form>
+</div>
