@@ -13,3 +13,33 @@
   .dropdown-toggle {
     outline: 0;
   }
+  /******* My CSS *******/
+  body{
+    background: linear-gradient(to right, #000046, #e0921c);
+  }
+  ._logo{
+    background: rgb(255, 255, 255);
+    border-radius: 50% 50%;
+  }
+  ._hd-h5{
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 5px 5px rgb(9, 9, 9), 0 0 1em rgb(32, 0, 216), 0 0 0.1em rgb(35, 35, 35);
+  }
+  ._hd-h5-efect:hover{
+    /*text-decoration: underline;*/
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+  }
+  
+._hd-link {
+  
+  margin: 10px;
+  /*background: rgb(27, 118, 253);*/
+}
+._hd-link-efect:hover{
+  border: 1px solid rgb(27, 118, 253);
+  border-radius: 10px;
+}
+
+

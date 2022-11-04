@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServidorService } from '../services/servidor.service';
-import { filter } from 'rxjs';
+
 @Component({
   selector: 'app-mesa',
   templateUrl: './mesa.component.html',

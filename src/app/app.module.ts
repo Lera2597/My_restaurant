@@ -12,13 +12,15 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MeseroComponent } from './mesero/mesero.component';
 import { MesaComponent } from './mesa/mesa.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
     MeseroComponent,
-    MesaComponent
+    MesaComponent,
+    HomeComponent
   ],
   imports: [
     ReactiveFormsModule,

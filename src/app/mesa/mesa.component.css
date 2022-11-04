@@ -13,6 +13,11 @@
 }
 /**** CSS Grid ****/
 /*** Mis estilos ******/
+body{
+  background: rgb(255, 255, 255);
+  /*background: radial-gradient(#b89c9c, #ffffff);*/
+  /*background: radial-gradient(circle at top left, #000046, #e0921c);*/
+}
 ._productos-color{
   background: rgb(187, 183, 183);
 }
