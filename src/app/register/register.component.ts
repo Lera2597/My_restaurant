@@ -12,7 +12,6 @@ import { ServidorService } from '../services/servidor.service';
 export class RegisterComponent implements OnInit {
   registerForm;
 
-
   constructor(
     private formBuilder: FormBuilder,
     private registerService: ServidorService,
@@ -21,28 +20,25 @@ export class RegisterComponent implements OnInit {
       { name: ['',Validators.required],
         pass: ['', Validators.required],
         username: ['', Validators.required],
-        rol: [1]
+        rol: [1],
+        table:["usuario"]
     }
-
     )
    }
 
   ngOnInit(): void {
-    this.registerService.register({
-      name: 'leo',
-      pass:'1234',
-      username: 'mesero1',
-      rol: 1
-    }).subscribe( x => {
-      console.log('responde: ', x)
-    })
   }
 
   createUser(){
     console.log('NewUser: ', this.registerForm.value);
     this.registerService.register(this.registerForm.value).subscribe( x => {
-      alert('Usuario creado')
-
+      let data:any= x;
+      if(data["answer"]=="ok"){
+        alert('Usuario creado');
+      }
+      else{
+        alert('Usuario ya existe');
+      }
     })
   }
 

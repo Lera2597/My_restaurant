@@ -55,7 +55,7 @@
 
 <body class="text-center">
   <div style="border: 1px solid red" class="form-signin w-100 m-auto">
-    <form [formGroup]="formularioRegistro">
+    <form [formGroup]="LoginForm">
       <img
         class="mb-4"
         src="../assets/brand/bootstrap-logo.svg"
@@ -97,6 +97,7 @@
         class="w-100 btn btn-lg btn-primary"
         type="button"
         (click)="login()"
+        [disabled]="!LoginForm.valid"
       >
         Sign in
       </button>
@@ -108,7 +109,7 @@
 
 -->
 <div class="container box" style="max-width: 300px">
-  <form [formGroup]="formularioRegistro">
+  <form [formGroup]="LoginForm">
     <h4 class="card-title" style="text-align: center">Bienvenido</h4>
 
     <div class="form-group form-item">
@@ -136,7 +137,7 @@
         type="submit"
         class="btn btn-primary form-item"
         (click)="login()"
-        [disabled]="!formularioRegistro.valid"
+        [disabled]="!LoginForm.valid"
       >
         Ingresar
       </button>
