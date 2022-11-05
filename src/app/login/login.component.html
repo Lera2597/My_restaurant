@@ -54,7 +54,7 @@
 
 <body class="text-center">
   <div style="border: 1px solid red" class="form-signin w-100 m-auto">
-    <form [formGroup]="formularioRegistro">
+    <form [formGroup]="LoginForm">
       <img
         class="mb-4"
         src="../assets/brand/bootstrap-logo.svg"
@@ -85,17 +85,11 @@
         />
         <label for="floatingPassword">Password</label>
       </div>
-      <!--
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        -->
       <button
         class="w-100 btn btn-lg btn-primary"
         type="button"
         (click)="login()"
+        [disabled]="!LoginForm.valid"
       >
         Sign in
       </button>

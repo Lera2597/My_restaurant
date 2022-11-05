@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import{AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import{FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ServidorService } from '../services/servidor.service';
 
@@ -9,51 +9,39 @@ import { ServidorService } from '../services/servidor.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  formularioRegistro = new FormGroup({
-    username: new FormControl('',Validators.required),
-    password: new FormControl('',Validators.required)
-  });
+  LoginForm ;
 
   private respuesta:any={answer:0};
-  constructor(private servidor:ServidorService, private router:Router) { }
+  constructor(
+    private servidor:ServidorService, 
+    private router:Router, 
+    private formBuilder: FormBuilder
+    ) 
+    {
+      this.LoginForm = this.formBuilder.group(
+        {
+          username: ['',Validators.required],
+          password: ['',Validators.required]
+        }
+      )
+     }
 
   ngOnInit(): void {
   }
   login(){
-    console.log(this.formularioRegistro.value);
-    this.servidor.login(this.formularioRegistro.value).subscribe(answer=>
+    console.log(this.LoginForm.value);
+    this.servidor.login(this.LoginForm.value).subscribe(answer=>
       {
         this.respuesta=answer;
         if(this.respuesta.answer){
-          console.log("bien");
-    
           this.router.navigate(['/mesero',this.respuesta.name])
         }
         else{
-          console.log("mal");
+          alert("Usuaro no esta registrado")
         }
-      },error=>{alert(error)}
+      },()=>{alert("Se produjo un error")}
       );
-    
-    console.log(this.respuesta);
-    // if(this.respuesta.answer){
-    //   console.log("bien");
-
-    //   this.reuter.navigate(['/mesero',this.respuesta.name])
-    // }
-    // else{
-    //   console.log("mal");
-    // }
-    console.log(this.respuesta.answer);
   }
-  ValidateUser(servicio:ServidorService){
-    return (control:AbstractControl)=>{
-      const value = control.value;
-      return servicio.login(value);
-    }
-  }
-
   register(){
     this.router.navigate(['/register']);
   }

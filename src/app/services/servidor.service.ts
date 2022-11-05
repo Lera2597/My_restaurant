@@ -20,7 +20,7 @@ export class ServidorService {
   }
 
   GetProduct(cantidad:string){
-    let path = `${'http://localhost:80/Web_Proyecto_Final/Prueba1/Get.php'}`;
+    let path = `${this.rootPath}Get.php`;
     let data:any;
     switch (cantidad){
       case "only":

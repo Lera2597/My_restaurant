@@ -9,8 +9,6 @@ import { ServidorService } from '../services/servidor.service';
 })
 export class MesaComponent implements OnInit {
   private data: any;
-  public arrayproduct = [];
-  pro: any = [{ "casa": 1, "dodo": 2 }, { "casas": 52, "coro": 77 }];
   products: any = []
   bebidas: any = [];
   fuertes: any = [];
