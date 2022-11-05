@@ -1,4 +1,4 @@
-<div class="container" style="max-width: 300px">
+<div class="container box" style="max-width: 300px">
   <form [formGroup]="registerForm">
     <h4 class="card-title">Registro de usuarios</h4>
 
@@ -30,20 +30,29 @@
         formControlName="pass"
       />
     </div>
-    <div class="input-group mb-3 form-item" style="margin-top: 10px">
-      <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">Rol</label>
+    <div class="check-container">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          formControlName="rol"
+          id="flexRadioDefault1"
+          [value]="1"
+        />
+        <label class="form-check-label" for="flexRadioDefault1"> Chef </label>
       </div>
-      <select
-        class="custom-select"
-        id="inputGroupSelect01"
-        formControlName="rol"
-      >
-        <option selected>Escoger...</option>
-        <option value="1">Mesero</option>
-        <option value="2">Cocina</option>
-      </select>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          formControlName="rol"
+          id="flexRadioDefault2"
+          [value]="2"
+        />
+        <label class="form-check-label" for="flexRadioDefault2"> Mesero </label>
+      </div>
     </div>
+
     <button
       type="submit"
       class="btn btn-primary form-item"
