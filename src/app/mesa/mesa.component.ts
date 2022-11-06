@@ -38,14 +38,8 @@ export class MesaComponent implements OnInit {
             this.entradas.push(data);
             break;
         }
-        console.log(data["disponibilidad"])
       });
-      //console.log( Object.keys(this.bebidas).length);
-      // Object.values(this.bebidas).forEach(key => {
-      //   let data: any = key;
-      //   console.log(data["nombre"])
-      // });
-    });
+    },()=>{alert("Error en la conección con la base de datos")});
 
 
   }
@@ -76,16 +70,11 @@ export class MesaComponent implements OnInit {
     return parseInt(valor,10);
   }
   AddProduct(product:any){
-
     let disponibilidad = this.ToInt(product["disponibilidad"]);
     if(disponibilidad){
-
     }
     else{
       alert("Producto no estadisponible");
     }
-    
   }
-
-
 }
