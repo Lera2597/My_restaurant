@@ -1,109 +1,224 @@
 <body class="py-0">
-    <main>
-        <div class="container-fluid themed-container">
-            <div [ngSwitch]="table">
-                <h3 class="mt-1" *ngSwitchCase="1">Mesa 1</h3>
-                <h3 class="mt-2" *ngSwitchCase="2">Mesa 2</h3>
-                <h3 class="mt-2" *ngSwitchCase="3">Mesa 3</h3>
-                <h3 class="mt-2" *ngSwitchCase="4">Mesa 4</h3>
-                <h3 class="mt-2" *ngSwitchCase="5">Mesa 5</h3>
-                <h3 class="mt-2" *ngSwitchCase="6">Mesa 6</h3>
-                <h3 class="mt-2" *ngSwitchDefault>default</h3>
-            </div>
-            <h4 class="mt-2">Atendido por {{user}} </h4>
+  <main>
+    <div class="container-fluid themed-container">
+      <div [ngSwitch]="table">
+        <h3 class="mt-1" *ngSwitchCase="1">Mesa 1</h3>
+        <h3 class="mt-2" *ngSwitchCase="2">Mesa 2</h3>
+        <h3 class="mt-2" *ngSwitchCase="3">Mesa 3</h3>
+        <h3 class="mt-2" *ngSwitchCase="4">Mesa 4</h3>
+        <h3 class="mt-2" *ngSwitchCase="5">Mesa 5</h3>
+        <h3 class="mt-2" *ngSwitchCase="6">Mesa 6</h3>
+        <h3 class="mt-2" *ngSwitchDefault>default</h3>
+      </div>
+      <h4 class="mt-2">Atendido por {{ user }}</h4>
 
-            <div class="row mb-3 text-center">
-                <div class="col-md-7 themed-grid-col _productos-color">
-                    <div class=" row">
-                        <h4 class=""> Productos</h4>
-                        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-0">
-                            <div class="container-fluid">
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <div class="collapse navbar-collapse" id="navbarCollapse">
-                                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                                        <li class="nav-item">
-                                            <a  class="nav-link _bnt-resaltar-borde" (click)="ClaseComida('entrada')" >Entradas</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a  class="nav-link _bnt-resaltar-borde" (click)="ClaseComida('fuerte')" >Platos Fuertes</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link _bnt-resaltar-borde" (click)="ClaseComida('bebida')" >Bebidas</a>
-                                        </li>
-                                    </ul>
-                                    <form class="d-flex" role="search">
-                                        <input class="form-control me-2" type="search" placeholder="Search"
-                                            aria-label="Search">
-                                        <button class="btn btn-outline-success" type="submit">Search</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                    <div [ngSwitch]="option">
-                        <div class="row" *ngSwitchCase=0><!-- ENTRADAS -->
-                            <div class="col-md-3 _themed-grid-col" *ngFor="let product of entradas">
-                                <h6>{{product['nombre']}} </h6>
-                                <img (click)="AddProduct(product)" class="_img-resaltar-borde _img-resaltar-click" src='../../assets/images/Productos{{product["foto"]}}' alt="">                            
-                                <ng-container *ngIf="ToInt(product['disponibilidad']) ; else aux">
-                                    <h6 class="_precio">${{product["valor"]}} </h6>
-                                </ng-container>
-                                <ng-template #aux> 
-                                    <h6 class="_precio _Nodisponible">No disponible</h6>
-                                </ng-template>
-                                <p>{{product["descripcion"]}}</p>
-                            </div>
-                            
-                        </div>
-                        <div class="row" *ngSwitchCase=1><!-- PLATO FUERTES -->
-                            <div class="col-md-3 _themed-grid-col" *ngFor="let product of fuertes">
-                                <h6>{{product['nombre']}} </h6>
-                                <img (click)="AddProduct(product)" class="_img-resaltar-borde _img-resaltar-click" src='../../assets/images/Productos{{product["foto"]}}' alt="">                            
-                                <ng-container *ngIf="ToInt(product['disponibilidad']) ; else aux">
-                                    <h6 class="_precio">${{product["valor"]}} </h6>
-                                </ng-container>
-                                <ng-template #aux> 
-                                    <h6 class="_precio _Nodisponible">No disponible</h6>
-                                </ng-template>
-                                <p>{{product["descripcion"]}}</p>
-                                
-                            </div>                         
-                        </div>
-                        <div class="row" *ngSwitchCase=2><!-- BEBIDAS -->
-                            
-                            <div class="col-md-3 _themed-grid-col" *ngFor="let product of bebidas">
-                                <h6>{{product['nombre']}} </h6>
-                                <img (click)="AddProduct(product)" class="_img-resaltar-borde _img-resaltar-click" src='../../assets/images/Productos{{product["foto"]}}' alt="">                            
-                                <ng-container *ngIf="ToInt(product['disponibilidad']) ; else aux">
-                                    <h6 class="_precio">${{product["valor"]}} </h6>
-                                </ng-container>
-                                <ng-template #aux> 
-                                    <h6 class="_precio _Nodisponible">No disponible</h6>
-                                </ng-template>
-                                <p>{{product["descripcion"]}}</p>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
+      <div class="row mb-3 text-center">
+        <div class="col-md-7 themed-grid-col _productos-color">
+          <div class="row">
+            <h4 class="">Productos</h4>
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-0">
+              <div class="container-fluid">
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarCollapse"
+                  aria-controls="navbarCollapse"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                  <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                      <a
+                        class="nav-link _bnt-resaltar-borde"
+                        (click)="ClaseComida('entrada')"
+                        >Entradas</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link _bnt-resaltar-borde"
+                        (click)="ClaseComida('fuerte')"
+                        >Platos Fuertes</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link _bnt-resaltar-borde"
+                        (click)="ClaseComida('bebida')"
+                        >Bebidas</a
+                      >
+                    </li>
+                  </ul>
+                  <form class="d-flex" role="search">
+                    <input
+                      class="form-control me-2"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                    <button class="btn btn-outline-success" type="submit">
+                      Search
+                    </button>
+                  </form>
                 </div>
-                <div class="col-md-5 themed-grid-col">
-                    <div class="pb-3">
-                        <h4 class="mt-2"> Pedido</h4>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 themed-grid-col">selected products</div>
-
-                    </div>
-                </div>
+              </div>
+            </nav>
+          </div>
+          <div [ngSwitch]="option">
+            <div class="row" *ngSwitchCase="0">
+              <!-- ENTRADAS -->
+              <div
+                class="col-md-3 _themed-grid-col"
+                *ngFor="let product of entradas"
+              >
+                <h6>{{ product["nombre"] }}</h6>
+                <img
+                  src="../../assets/images/Productos{{ product['foto'] }}"
+                  alt=""
+                />
+                <ng-container
+                  *ngIf="ToInt(product['disponibilidad']); else aux"
+                >
+                  <h6 class="_precio">${{ product["valor"] }}</h6>
+                </ng-container>
+                <ng-template #aux>
+                  <h6 class="_precio _Nodisponible">No disponible</h6>
+                </ng-template>
+                <p>{{ product["descripcion"] }}</p>
+                <button
+                  (click)="addProduct(product)"
+                  class="btn btn-primary"
+                  [disabled]="product.disponibilidad === '0'"
+                >
+                  Agregar
+                </button>
+              </div>
             </div>
+            <div class="row" *ngSwitchCase="1">
+              <!-- PLATO FUERTES -->
+              <div
+                class="col-md-3 _themed-grid-col"
+                *ngFor="let product of fuertes"
+              >
+                <h6>{{ product["nombre"] }}</h6>
+                <img
+                  src="../../assets/images/Productos{{ product['foto'] }}"
+                  alt=""
+                />
+                <ng-container
+                  *ngIf="ToInt(product['disponibilidad']); else aux"
+                >
+                  <h6 class="_precio">${{ product["valor"] }}</h6>
+                </ng-container>
+                <ng-template #aux>
+                  <h6 class="_precio _Nodisponible">No disponible</h6>
+                </ng-template>
+                <p>{{ product["descripcion"] }}</p>
+                <button
+                  (click)="addProduct(product)"
+                  class="btn btn-primary"
+                  [disabled]="product.disponibilidad === '0'"
+                >
+                  Agregar
+                </button>
+              </div>
+            </div>
+            <div class="row" *ngSwitchCase="2">
+              <!-- BEBIDAS -->
+
+              <div
+                class="col-md-3 _themed-grid-col"
+                *ngFor="let product of bebidas"
+              >
+                <h6>{{ product["nombre"] }}</h6>
+                <img
+                  src="../../assets/images/Productos{{ product['foto'] }}"
+                  alt=""
+                />
+                <ng-container
+                  *ngIf="ToInt(product['disponibilidad']); else aux"
+                >
+                  <h6 class="_precio">${{ product["valor"] }}</h6>
+                </ng-container>
+                <ng-template #aux>
+                  <h6 class="_precio _Nodisponible">No disponible</h6>
+                </ng-template>
+                <p>{{ product["descripcion"] }}</p>
+                <button
+                  (click)="addProduct(product)"
+                  class="btn btn-primary"
+                  [disabled]="product.disponibilidad === '0'"
+                >
+                  Agregar
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-    </main>
-
-
-
+        <div class="col-md-5 themed-grid-col">
+          <div class="pb-3">
+            <h4 class="mt-2">Pedido</h4>
+          </div>
+          <div>
+            <ul class="list-group list-group-light">
+              <li
+                *ngFor="let item of pedido; let i = index"
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div class="d-flex align-items-center" style="width: 50%">
+                  <div style="width: 60px" class="form-outline rounded-circle">
+                    <input
+                      (change)="updateItem(i)"
+                      name="key_{{ i }}"
+                      [(ngModel)]="item.cant"
+                      type="number"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="ms-3" style="text-align: initial">
+                    <p class="fw-bold mb-1">{{ item.name }}</p>
+                    <small class="text-muted">${{ item.value }}</small>
+                  </div>
+                </div>
+                <div class="form-outline" style="width: 40%">
+                  <textarea
+                    name="key_{{ i }}"
+                    [(ngModel)]="item.comentary"
+                    name="com_{{ i }}"
+                    class="form-control"
+                    rows="2"
+                    placeholder="Comentario"
+                  ></textarea>
+                </div>
+                <button
+                  (click)="deleteItem(i)"
+                  type="button"
+                  class="btn-close"
+                  aria-label="Close"
+                ></button>
+              </li>
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div
+                  class="d-flex align-items-center fw-bold"
+                  style="width: 50%"
+                >
+                  Total
+                </div>
+                <div class="fw-bold">${{ totalPedido }}</div>
+              </li>
+              <button (click)="createPedido()" class="btn btn-primary">
+                Enviar
+              </button>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </body>

@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MeseroComponent } from './mesero/mesero.component';
@@ -28,7 +29,8 @@ import { RegisterComponent } from './register/register.component';
     ReactiveFormsModule,
     HttpClientModule,// se requiere para uso de http
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
