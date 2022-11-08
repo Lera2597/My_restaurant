@@ -1,17 +1,9 @@
 <body class="py-0">
     <main>
         <div class="container-fluid themed-container">
-            <div [ngSwitch]="table">
-                <h3 class="mt-1" *ngSwitchCase="1">Mesa 1</h3>
-                <h3 class="mt-2" *ngSwitchCase="2">Mesa 2</h3>
-                <h3 class="mt-2" *ngSwitchCase="3">Mesa 3</h3>
-                <h3 class="mt-2" *ngSwitchCase="4">Mesa 4</h3>
-                <h3 class="mt-2" *ngSwitchCase="5">Mesa 5</h3>
-                <h3 class="mt-2" *ngSwitchCase="6">Mesa 6</h3>
-                <h3 class="mt-2" *ngSwitchDefault>default</h3>
-            </div>
-            <h4 class="mt-2">Atendido por {{user}} </h4>
-
+            <h3>{{table}}</h3>
+            <h4 class="mt-2">Atendido por: {{waiter}} </h4>
+            <h4 class="mt-2">Acumulado: ${{pedidovalor}} </h4>
             <div class="row mb-3 text-center">
                 <div class="col-md-7 themed-grid-col _productos-color">
                     <div class=" row">
@@ -56,8 +48,7 @@
                                     <h6 class="_precio _Nodisponible">No disponible</h6>
                                 </ng-template>
                                 <p>{{product["descripcion"]}}</p>
-                            </div>
-                            
+                            </div>                          
                         </div>
                         <div class="row" *ngSwitchCase=1><!-- PLATO FUERTES -->
                             <div class="col-md-3 _themed-grid-col" *ngFor="let product of fuertes">

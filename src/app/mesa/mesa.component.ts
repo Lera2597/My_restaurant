@@ -14,15 +14,20 @@ export class MesaComponent implements OnInit {
   fuertes: any = [];
   entradas:any = [];
 
-  user: any;
+  pedidovalor: any;
+  waiter: any;
   table: any;
+  id_mesa:any;
   option: number = 0;
   constructor(private route: ActivatedRoute, private servidor: ServidorService) { }
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => { this.data = params });
-    this.user = this.data.name;
-    this.table = this.data.mesa;
-    this.servidor.GetProduct("all").subscribe(answer => {
+    this.route.queryParams.subscribe(params => { this.data = params;
+      this.waiter = this.data.waiter;
+      this.table = this.data.table;
+      this.id_mesa = this.data.id_mesa;
+      console.log("ide",this.id_mesa)
+     });
+    this.servidor.GetProduct("all").subscribe((answer:any) => {
       this.products = answer;
       //this.products = Object.values(this.products);
       Object.values(this.products).forEach(key => {
@@ -39,7 +44,20 @@ export class MesaComponent implements OnInit {
             break;
         }
       });
-    },()=>{alert("Error en la conección con la base de datos")});
+    },()=>{alert("Error: No se encontro lo datos")});
+    /******* */
+    this.servidor.GetPedido("only",this.table).subscribe((x:any) =>{
+      if(x==null){
+        this.pedidovalor = 0;
+      }
+      else{
+        this.pedidovalor = x["valor"];
+      }
+      console.log(x)
+      
+    },()=>{
+      alert("error")
+    })
 
 
   }
@@ -49,19 +67,17 @@ export class MesaComponent implements OnInit {
         this.option = 0;
         //console.log(this.products.filter)
         //Agregar la seleccion de la opcion en html
-        //Traer los productos de la base de datos 
         //console.log(tipo);
         break;
       case 'fuerte':
         this.option = 1;
         //Agregar la seleccion de la opcion en html
-        //Traer los productos de la base de datos 
+
         //console.log(tipo);
         break;
       case 'bebida':
         this.option = 2;
-        //Agregar la seleccion de la opcion en html
-        //Traer los productos de la base de datos 
+        //Agregar la seleccion de la opcion en html 
         //console.log(tipo);
         break;
     }

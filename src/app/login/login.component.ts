@@ -11,7 +11,7 @@ import { ServidorService } from '../services/servidor.service';
 export class LoginComponent implements OnInit {
   LoginForm ;
 
-  private respuesta:any={answer:0};
+  private user:any={answer:0};
   constructor(
     private servidor:ServidorService, 
     private router:Router, 
@@ -30,11 +30,17 @@ export class LoginComponent implements OnInit {
   }
   login(){
     console.log(this.LoginForm.value);
-    this.servidor.login(this.LoginForm.value).subscribe(answer=>
+    this.servidor.login(this.LoginForm.value).subscribe(x=>
       {
-        this.respuesta=answer;
-        if(this.respuesta.answer){
-          this.router.navigate(['/mesero',this.respuesta.name])
+        this.user=x;
+        if(this.user.answer){
+          if(this.user.rol==1){//Chef=1
+            this.router.navigate(['/chef',this.user.name])
+          }
+          else{
+            this.router.navigate(['/mesero',this.user.name])
+          }
+          
         }
         else{
           alert("Usuaro no esta registrado")

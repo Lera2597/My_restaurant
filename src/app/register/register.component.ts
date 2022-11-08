@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
       else{
         alert('Usuario ya existe');
       }
-    })
+    },()=>{alert("Erroor")})
   }
 
 }

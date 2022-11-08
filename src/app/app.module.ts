@@ -14,6 +14,8 @@ import { MeseroComponent } from './mesero/mesero.component';
 import { MesaComponent } from './mesa/mesa.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ChefComponent } from './chef/chef.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +24,15 @@ import { RegisterComponent } from './register/register.component';
     MeseroComponent,
     MesaComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChefComponent
   ],
   imports: [
     ReactiveFormsModule,
     HttpClientModule,// se requiere para uso de http
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,61 @@
+<body class="py-0">
+  <main>
+    <div class="container">
+      <div class="flex-shrink-0 p-3 bg-white">
+        <span class="fs-5 fw-semibold">Pedidos</span>
+        <hr>
+        <ul class="list-unstyled ps-0">
+          <li class="mb-1" *ngFor="let pedido of pedidos; index as i">
+            <!--pedido-->
+            <div *ngIf="ToInt(pedido.estado) ">
+              <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed _color"
+                data-bs-toggle="collapse" [attr.data-bs-target]="'#lista'+i" aria-expanded="false">
+                {{pedido['nombre_mesa']}}
+              </button>
+              <input class="form-check-input flex-shrink-0 _margin-left" style="font-size: 1.375em;" 
+                (click)="UpdateState(pedido)"
+                [disabled]="validarPedido(pedido.id)" type="checkbox" value="false" unchecked>
+
+              <div class="collapse show" [id]="'lista'+i">
+                <!--item-->
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li>
+                    <div class="table-responsive">
+                      <table class="table table-striped table-sm">
+                        <thead class="table-dark">
+                          <tr>
+                            <th> Producto</th>
+                            <th> cantidad</th>
+                            <th> estado </th>
+                            <th> comentario</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let item of busquedaitem(pedido.id)" class="table-secondary">
+                          <tr>
+                            <td>{{item.nombre_producto}}</td>
+                            <td>{{item.cantidad}}</td>
+                            <td>
+                              <input class="form-check-input flex-shrink-0 _margin-left" style="font-size: 1.375em;"
+                                (change)="ChangeState(item)" type="checkbox" value="false"
+                                [ngModel]="!ToInt(item.estado)">
+                              <!--
+                            <input [(ngModel)]="item.estado" (change)="VerItem(item)" class="form-check-input flex-shrink-0" type="checkbox" value="false" unchecked style="font-size: 1.375em;">
+                            -->
+                            </td>
+                            <td>{{item.comentario}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="border-top my-3"></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</body>
