@@ -13,6 +13,8 @@ export class MesaComponent implements OnInit {
   bebidas: any = [];
   fuertes: any = [];
   entradas:any = [];
+  pedido: any = [];
+  totalPedido = 0;
 
   pedidovalor: any;
   waiter: any;
@@ -82,15 +84,43 @@ export class MesaComponent implements OnInit {
         break;
     }
   }
+
+  addProduct(product: any) {
+    console.log('Add product: ', product);
+    this.pedido.push({name:product.nombre,
+    cant: 1, comentary:'', value: product.valor, price: product.valor});
+    this.updateTotal();
+
+
+  }
   ToInt(valor:any){
     return parseInt(valor,10);
   }
-  AddProduct(product:any){
-    let disponibilidad = this.ToInt(product["disponibilidad"]);
-    if(disponibilidad){
-    }
-    else{
-      alert("Producto no estadisponible");
-    }
+
+  deleteItem(id: any){
+    this.pedido.splice(id, 1);
+    this.updateTotal();
+
   }
+  updateItem(i:number){
+    this.pedido[i].value = Number(this.pedido[i].price) * Number(this.pedido[i].cant); 
+    this.updateTotal();
+
+  }
+
+  updateTotal(){
+    this.totalPedido = 0;
+    this.pedido.forEach((element:any) => {
+      this.totalPedido += Number(element.value);  
+    });
+
+  }
+  createPedido(){
+    this.servidor.createPedido().subscribe(x => {
+      console.log('Creando Pedido: ', x)
+    })
+  }
+
+
+
 }

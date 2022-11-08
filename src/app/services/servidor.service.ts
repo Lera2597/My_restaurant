@@ -109,4 +109,17 @@ export class ServidorService {
     return this.http.post(path,data);
   }
   
+
+  createPedido(){
+    let data = {
+      table: 'pedido',
+      id_usuario:1,
+      id_mesa:2,
+      estado: 1,
+      valor:20000
+    }
+    return this.http.post(`${this.rootPath}Set.php`, data )
+
+
+  }
 }

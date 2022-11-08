@@ -91,10 +91,41 @@
 
                     </div>
                 </div>
-            </div>
+                <div class="form-outline" style="width: 40%">
+                  <textarea
+                    name="key_{{ i }}"
+                    [(ngModel)]="item.comentary"
+                    name="com_{{ i }}"
+                    class="form-control"
+                    rows="2"
+                    placeholder="Comentario"
+                  ></textarea>
+                </div>
+                <button
+                  (click)="deleteItem(i)"
+                  type="button"
+                  class="btn-close"
+                  aria-label="Close"
+                ></button>
+              </li>
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div
+                  class="d-flex align-items-center fw-bold"
+                  style="width: 50%"
+                >
+                  Total
+                </div>
+                <div class="fw-bold">${{ totalPedido }}</div>
+              </li>
+              <button (click)="createPedido()" class="btn btn-primary">
+                Enviar
+              </button>
+            </ul>
+          </div>
         </div>
-    </main>
-
-
-
+      </div>
+    </div>
+  </main>
 </body>
