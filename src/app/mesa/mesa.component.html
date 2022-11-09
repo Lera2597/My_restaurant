@@ -4,6 +4,7 @@
             <h3>{{table}}</h3>
             <h4 class="mt-2">Atendido por: {{waiter}} </h4>
             <h4 class="mt-2">Acumulado: ${{pedidovalor}} </h4>
+
             <div class="row mb-3 text-center">
                 <div class="col-md-7 themed-grid-col _productos-color">
                     <div class=" row">
@@ -15,6 +16,7 @@
                                     aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
+
                                 <div class="collapse navbar-collapse" id="navbarCollapse">
                                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                                         <li class="nav-item">
@@ -27,15 +29,18 @@
                                             <a class="nav-link _bnt-resaltar-borde" (click)="ClaseComida('bebida')" >Bebidas</a>
                                         </li>
                                     </ul>
+
                                     <form class="d-flex" role="search">
                                         <input class="form-control me-2" type="search" placeholder="Search"
                                             aria-label="Search">
                                         <button class="btn btn-outline-success" type="submit">Search</button>
                                     </form>
+
                                 </div>
                             </div>
                         </nav>
                     </div>
+
                     <div [ngSwitch]="option">
                         <div class="row" *ngSwitchCase=0><!-- ENTRADAS -->
                             <div class="col-md-3 _themed-grid-col" *ngFor="let product of entradas">
@@ -82,14 +87,31 @@
                     </div>
                     
                 </div>
-                <div class="col-md-5 themed-grid-col">
-                    <div class="pb-3">
-                        <h4 class="mt-2"> Pedido</h4>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 themed-grid-col">selected products</div>
 
-                    </div>
+        <div class="col-md-5 themed-grid-col">
+          <div class="pb-3">
+            <h4 class="mt-2">Pedido</h4>
+          </div>
+          <div>
+            <ul class="list-group list-group-light">
+              <li
+                *ngFor="let item of pedido; let i = index"
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div class="d-flex align-items-center" style="width: 50%">
+                  <div style="width: 60px" class="form-outline rounded-circle">
+                    <input
+                      (change)="updateItem(i)"
+                      name="key_{{ i }}"
+                      [(ngModel)]="item.cant"
+                      type="number"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="ms-3" style="text-align: initial">
+                    <p class="fw-bold mb-1">{{ item.name }}</p>
+                    <small class="text-muted">${{ item.value }}</small>
+                  </div>
                 </div>
                 <div class="form-outline" style="width: 40%">
                   <textarea

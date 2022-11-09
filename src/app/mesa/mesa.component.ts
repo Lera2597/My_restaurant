@@ -85,7 +85,7 @@ export class MesaComponent implements OnInit {
     }
   }
 
-  addProduct(product: any) {
+  AddProduct(product: any) {
     console.log('Add product: ', product);
     this.pedido.push({name:product.nombre,
     cant: 1, comentary:'', value: product.valor, price: product.valor});
