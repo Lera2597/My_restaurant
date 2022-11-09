@@ -1,30 +1,49 @@
-
 <body class="py-4">
-    <main>
-        <div class="container">
-            <h2 class="mt-4">Lista de Mesas</h2><br>
-            <div class="row mb-3 text-center">
-
-                <!-- ENTRADAS -->
-                    <div class="col-4 themed-grid-col _mesa-container" *ngFor="let mesa of mesas">
-                        
-                        <h3><strong>{{mesa['nombre']}}</strong> </h3>
-                        <a [routerLink]="['/mesa']"  [queryParams]="{waiter:waiter,table:mesa['nombre'],id_mesa:mesa['id']}">
-                            <ng-container *ngIf="DisponibilidadMesa(mesa['nombre']);else aux1" >
-                                <img class="_mesa" src="../../assets/images/Mesas/MesaLibre.png" alt="">
-                            </ng-container>
-                            <ng-template #aux1>
-                                <img class="_mesa" src="../../assets/images/Mesas/MesaOcupada.png" alt="">
-                            </ng-template>
-                        </a>
-                        <ng-container *ngIf="DisponibilidadMesa(mesa['nombre']);else aux2" >
-                            <h6>Disponible</h6>
-                        </ng-container>
-                        <ng-template #aux2>
-                            <h6 class="_precio">${{pedido[0]["valor"]}}</h6>
-                        </ng-template>
-                    </div>                          
-                <!--
+  <main>
+    <div class="container">
+      <h2 class="mt-4">Lista de Mesas</h2>
+      <br />
+      <div class="row mb-3 text-center">
+        <!-- ENTRADAS -->
+        <div
+          class="col-4 themed-grid-col _mesa-container"
+          *ngFor="let mesa of mesas"
+        >
+          <h3>
+            <strong>{{ mesa["nombre"] }}</strong>
+          </h3>
+          <a
+            [routerLink]="['/mesa']"
+            [queryParams]="{
+              waiter: waiter,
+              table: mesa['nombre'],
+              id_mesa: mesa['id'],
+              id_waiter: user['id']
+            }"
+          >
+            <ng-container *ngIf="DisponibilidadMesa(mesa['nombre']); else aux1">
+              <img
+                class="_mesa"
+                src="../../assets/images/Mesas/MesaLibre.png"
+                alt=""
+              />
+            </ng-container>
+            <ng-template #aux1>
+              <img
+                class="_mesa"
+                src="../../assets/images/Mesas/MesaOcupada.png"
+                alt=""
+              />
+            </ng-template>
+          </a>
+          <ng-container *ngIf="DisponibilidadMesa(mesa['nombre']); else aux2">
+            <h6>Disponible</h6>
+          </ng-container>
+          <ng-template #aux2>
+            <h6 class="_precio">${{ pedido[0]["valor"] }}</h6>
+          </ng-template>
+        </div>
+        <!--
                 <div  id="mesa1"  class="col-4 themed-grid-col _mesa-container">
                     <h3><strong>Mesa1</strong> </h3>
                      <a [routerLink]="['/mesa']"  [queryParams]="{name:name,mesa:'1'}">
@@ -69,7 +88,7 @@
                      <h6>Disponible</h6>
                 </div>
                 -->
-            </div>
-        </div>
-    </main>
+      </div>
+    </div>
+  </main>
 </body>

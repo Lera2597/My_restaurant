@@ -21,12 +21,14 @@ export class MesaComponent implements OnInit {
   table: any;
   id_mesa:any;
   option: number = 0;
+  id_waiter: any;
   constructor(private route: ActivatedRoute, private servidor: ServidorService) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => { this.data = params;
       this.waiter = this.data.waiter;
       this.table = this.data.table;
       this.id_mesa = this.data.id_mesa;
+      this.id_waiter = this.data.id_waiter;
       console.log("ide",this.id_mesa)
      });
     this.servidor.GetProduct("all").subscribe((answer:any) => {
@@ -87,8 +89,15 @@ export class MesaComponent implements OnInit {
 
   AddProduct(product: any) {
     console.log('Add product: ', product);
-    this.pedido.push({name:product.nombre,
-    cant: 1, comentary:'', value: product.valor, price: product.valor});
+    this.pedido.push(
+      {name:product.nombre,
+        cant: 1, 
+        comentary:'', 
+        value: product.valor, 
+        price: product.valor,
+        productId: product.id,
+        productName: product.nombre
+      });
     this.updateTotal();
 
 
@@ -116,8 +125,44 @@ export class MesaComponent implements OnInit {
 
   }
   createPedido(){
-    this.servidor.createPedido().subscribe(x => {
-      console.log('Creando Pedido: ', x)
+    let data = {
+      table: 'pedido',
+      id_usuario:Number(this.id_waiter),
+      nombre_mesa:this.table,
+      estado: 1,
+      valor: this.totalPedido
+    }
+    console.log('informació del pedido', this.pedido)
+    this.servidor.createPedido(data).subscribe((x: any) => {
+      if(x.answer === 'ok'|| x){
+        this.servidor.GetPedido('only',data.nombre_mesa).subscribe( (x1:any) => {
+          let idPedido = Number(x1.id);
+          alert('pedido enviado');
+          this.pedido = [];
+          this.totalPedido = 0;
+         this.pedido.forEach((item:any )=> {
+            this.servidor.createItem({
+              table: 'item',
+              id_producto: item.productName,
+              id_pedido: idPedido,
+              estado: 1,
+              cantidad: Number(item.cant),
+              comentario: item.comentary,
+              nombre_producto: item.productName
+            }).subscribe(
+              X => {
+
+                console.log('item guardado: ', X)
+              }
+            )
+
+          })
+
+        }
+        )
+
+      }
+ 
     })
   }
 

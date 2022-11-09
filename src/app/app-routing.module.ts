@@ -12,8 +12,8 @@ const routes: Routes = [
   {path:'mesa',component:MesaComponent},
   {path:'home',component:HomeComponent},
   {path:'',pathMatch:'full',redirectTo:'home'},
-  {path:'mesero/:user',component:MeseroComponent},
-  {path:'chef/:user',component:ChefComponent}
+  {path:'mesero',component:MeseroComponent},
+  {path:'chef',component:ChefComponent}
 
 ];
 

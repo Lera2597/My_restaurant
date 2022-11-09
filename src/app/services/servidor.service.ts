@@ -110,16 +110,15 @@ export class ServidorService {
   }
   
 
-  createPedido(){
-    let data = {
-      table: 'pedido',
-      id_usuario:1,
-      id_mesa:2,
-      estado: 1,
-      valor:20000
-    }
+  createPedido(data: any){
+
     return this.http.post(`${this.rootPath}Set.php`, data )
 
+  }
+
+  createItem(data:any){
+    console.log('creando item:...');
+    return this.http.post(`${this.rootPath}Set.php`, data )
 
   }
 }

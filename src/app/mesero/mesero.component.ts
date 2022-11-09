@@ -14,13 +14,17 @@ export class MeseroComponent implements OnInit {
   preciosmesa: any=[];
   pedido:any = [{"valor":0}];
   nombre:string= "";
+  user: any;
   constructor(
     private ruta:ActivatedRoute,
     private servidor:ServidorService
   ) { }
   ngOnInit(): void {
-    this.waiter= this.ruta.snapshot.paramMap.get('user');
-    console.log("mesero "+ this.waiter);
+    this.ruta.queryParams.subscribe(params => {
+      this.user = params;
+      this.waiter = params["name"];
+      console.log('info del mesero: ', params)
+    });
     //*********** */
 
     this.servidor.GetPedido("all").subscribe(data=>{

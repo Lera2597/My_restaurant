@@ -35,10 +35,12 @@ export class LoginComponent implements OnInit {
         this.user=x;
         if(this.user.answer){
           if(this.user.rol==1){//Chef=1
-            this.router.navigate(['/chef',this.user.name])
+            this.router.navigate(['/chef'], { queryParams : this.user })
           }
           else{
-            this.router.navigate(['/mesero',this.user.name])
+            console.log('info del user: ', this.user)
+            this.router.navigate(['/mesero'], { queryParams : this.user }
+            )
           }
           
         }
